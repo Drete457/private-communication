@@ -48,7 +48,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
           if git ls-remote --exit-code --heads origin gh-pages > /dev/null; then
-            git fetch origin gh-pages
+            git fetch origin gh-pages:refs/remotes/origin/gh-pages
             git switch -C gh-pages origin/gh-pages
           else
             git switch --orphan gh-pages
