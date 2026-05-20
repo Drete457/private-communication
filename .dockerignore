@@ -1,0 +1,21 @@
+.git
+.github
+.vscode
+
+**/node_modules
+**/dist
+**/build
+**/.vite
+**/coverage
+
+frontend/dev-dist
+
+# Runtime TLS/certbot state is mounted at runtime, not needed in image builds.
+docker/certbot/conf
+docker/certbot/www
+docker/nginx/ssl
+
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+.pnpm-debug.log

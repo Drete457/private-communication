@@ -1,0 +1,1 @@
+export { generateBackupPassphrase } from '@private-communication/pcbk-core';

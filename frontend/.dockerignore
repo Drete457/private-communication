@@ -1,0 +1,14 @@
+node_modules
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+.pnpm-debug.log
+dist
+.dev-dist
+.vite
+.git
+.gitignore
+Dockerfile
+Dockerfile.*
+README*
+*.md

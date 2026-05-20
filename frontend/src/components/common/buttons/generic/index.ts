@@ -1,0 +1,1 @@
+export { default as GenericButton, RoundGenericButton, SmallGenericButton } from './generic-button';

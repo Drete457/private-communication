@@ -1,0 +1,1 @@
+export { default as AddContact } from './add-contact';

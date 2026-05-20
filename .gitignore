@@ -1,0 +1,54 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+frontend/dist/
+backend/dist/
+packages/*/dist/
+*.tsbuildinfo
+
+# Environment files
+.env
+.env.local
+.env.*.local
+frontend/.env.local
+backend/.env
+
+# Docker volumes
+docker/certbot/conf/*
+!docker/certbot/conf/.gitkeep
+!docker/certbot/conf/renewal-hooks/
+docker/certbot/conf/renewal-hooks/*
+!docker/certbot/conf/renewal-hooks/deploy/
+docker/certbot/conf/renewal-hooks/deploy/*
+!docker/certbot/conf/renewal-hooks/deploy/reload-nginx.sh
+docker/certbot/www/*
+!docker/certbot/www/.gitkeep
+
+# SSL certificates
+docker/nginx/ssl/
+
+# Backups
+backups/
+
+# Logs
+*.log
+logs/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Redis dump
+dump.rdb
+
+# GitHub local agent files stay ignored, but workflows are tracked
+.github/*
+!.github/workflows/
+!.github/workflows/**
