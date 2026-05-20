@@ -10,7 +10,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: website-gh-pages
@@ -23,13 +23,20 @@ jobs:
       - name: Publish website to gh-pages
         shell: bash
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          WEBSITE_DEPLOY_KEY: ${{ secrets.WEBSITE_DEPLOY_KEY }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           GITHUB_SHA: ${{ github.sha }}
         run: |
           set -euo pipefail
 
-          git clone --depth 1 "https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" repo
+          umask 077
+          mkdir -p "$HOME/.ssh"
+          printf '%s\n' "${WEBSITE_DEPLOY_KEY}" > "$HOME/.ssh/website_deploy_key"
+          chmod 600 "$HOME/.ssh/website_deploy_key"
+          ssh-keyscan -H github.com > "$HOME/.ssh/known_hosts"
+          export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/website_deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes"
+
+          git clone --depth 1 "git@github.com:${GITHUB_REPOSITORY}.git" repo
           cd repo
 
           publish_dir="$(mktemp -d)"
@@ -58,4 +65,4 @@ jobs:
           fi
 
           git commit -m "Deploy website from ${GITHUB_SHA}"
-          git push origin gh-pages --force
+          git push origin gh-pages
