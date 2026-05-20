@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      name="description"
+      content="Open-source, self-hosted, zero-knowledge messaging app with encrypted chat, WebRTC calls, file sharing, and PCBK backups."
+    />
+    <title>Private Communication | Open-source encrypted chat, calls, and backups</title>
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:site_name" content="Private Communication" />
+    <meta property="og:title" content="Private Communication | Open-source encrypted chat, calls, and backups" />
+    <meta
+      property="og:description"
+      content="Open-source, self-hosted, zero-knowledge messaging app with encrypted chat, WebRTC calls, file sharing, and PCBK backups."
+    />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Private Communication | Open-source encrypted chat, calls, and backups" />
+    <meta
+      name="twitter:description"
+      content="Open-source, self-hosted, zero-knowledge messaging app with encrypted chat, WebRTC calls, file sharing, and PCBK backups."
+    />
+    <meta name="theme-color" content="#0a1528" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="alternate icon" href="assets/favicon-96x96.png" type="image/png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Private Communication",
+        "applicationCategory": "CommunicationApplication",
+        "operatingSystem": "Web Browser",
+        "description": "Open-source, self-hosted, zero-knowledge messaging app with encrypted chat, WebRTC calls, file sharing, and PCBK backups.",
+        "isAccessibleForFree": true,
+        "downloadUrl": "https://github.com/Drete457/private-communication",
+        "codeRepository": "https://github.com/Drete457/private-communication",
+        "license": "https://github.com/Drete457/private-communication/blob/main/LICENSE",
+        "keywords": [
+          "encrypted messaging",
+          "self-hosted chat",
+          "zero-knowledge communication",
+          "WebRTC calls",
+          "encrypted backups"
+        ],
+        "featureList": [
+          "Encrypted chat and file delivery",
+          "WebRTC audio and video calls",
+          "Browser-owned identity and keys",
+          "PCBK encrypted backups",
+          "Self-hosted Docker deployment"
+        ]
+      }
+    </script>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" id="top" data-elevated="false">
+      <a class="brand" href="#top" aria-label="Private Communication home">
+        <span class="brand-icon" aria-hidden="true">
+          <img src="assets/favicon.svg" alt="" />
+        </span>
+        <span>Private Communication</span>
+      </a>
+
+      <div class="header-actions">
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a href="#project-map">Overview</a>
+          <a href="#backend">Backend</a>
+          <a href="#frontend">Frontend</a>
+          <a href="#privacy">Privacy</a>
+          <a href="#backups">Backups</a>
+          <a href="#infrastructure">Infrastructure</a>
+          <a href="#quality">Quality</a>
+        </nav>
+        <a class="header-repo" href="https://github.com/Drete457/private-communication" target="_blank" rel="noopener noreferrer">
+          GitHub repo
+          <span class="sr-only">(opens in a new tab)</span>
+        </a>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section class="hero" aria-labelledby="hero-title">
+        <canvas class="hero-canvas" aria-hidden="true"></canvas>
+        <div class="hero-overlay" aria-hidden="true"></div>
+
+        <div class="hero-content">
+          <div class="hero-main">
+            <p class="eyebrow">Self-hosted encrypted communication</p>
+            <h1 id="hero-title">Private Communication</h1>
+            <p class="hero-copy">
+              Encrypted chat, calls, files, and backups in one self-hosted app. Devices keep identity and keys; server only moves encrypted traffic.
+            </p>
+
+            <nav class="hero-actions" aria-label="Hero actions">
+              <a class="button primary" href="https://github.com/Drete457/private-communication" target="_blank" rel="noopener noreferrer">
+                Open GitHub repo
+                <span class="sr-only">(opens in a new tab)</span>
+              </a>
+              <a class="button secondary" href="#project-map">Architecture guide</a>
+              <a class="button tertiary" href="#privacy">Privacy model</a>
+            </nav>
+          </div>
+
+          <aside class="hero-panel" aria-label="Project runtime summary">
+            <p class="eyebrow">Runtime shape</p>
+            <div class="hero-panel-grid">
+              <article>
+                <span data-status="healthy">Client</span>
+                <strong>Encrypts content</strong>
+                <p>Identity, keys, drafts, files, messages, calls, and backups stay browser-owned.</p>
+              </article>
+              <article>
+                <span data-status="unknown">Backend</span>
+                <strong>Coordinates state</strong>
+                <p>Signed APIs, WebSocket signaling, queues, presence, push, TURN, and dashboard metrics.</p>
+              </article>
+              <article>
+                <span data-status="degraded">Storage</span>
+                <strong>Encrypted envelopes</strong>
+                <p>Redis and attachment storage only receive encrypted transport data and metadata.</p>
+              </article>
+            </div>
+          </aside>
+
+          <dl class="hero-stats" aria-label="Project architecture highlights">
+            <div>
+              <dt>Identity</dt>
+              <dd>Key-derived</dd>
+            </div>
+            <div>
+              <dt>Content</dt>
+              <dd>Client encrypted</dd>
+            </div>
+            <div>
+              <dt>Runtime</dt>
+              <dd>Self-hosted</dd>
+            </div>
+          </dl>
+        </div>
+      </section>
+
+      <section class="section intro" id="project-map" aria-labelledby="map-title">
+        <div class="section-heading">
+          <p class="eyebrow">Architecture guide</p>
+          <h2 id="map-title">Map the stack before you read the details.</h2>
+          <p>
+            Use this guide to jump straight to client code, backend coordination, privacy boundaries, backups, operations, and quality controls.
+          </p>
+        </div>
+
+        <nav class="map-grid" aria-label="Project architecture guide">
+          <a class="map-item" href="#backend">
+            <span class="item-number" aria-hidden="true">01</span>
+            <h3>Backend</h3>
+            <p>API auth, WebSocket signaling, Redis queues, attachments, push delivery, and call state.</p>
+            <span class="map-link-label">Read backend section</span>
+          </a>
+          <a class="map-item" href="#frontend">
+            <span class="item-number" aria-hidden="true">02</span>
+            <h3>Frontend</h3>
+            <p>Browser identity, local data, messaging UI, media library, WebRTC calls, and PWA behavior.</p>
+            <span class="map-link-label">Read frontend section</span>
+          </a>
+          <a class="map-item" href="#privacy">
+            <span class="item-number" aria-hidden="true">03</span>
+            <h3>Privacy model</h3>
+            <p>See what stays on device, what server can coordinate, and where zero-knowledge line sits.</p>
+            <span class="map-link-label">Read privacy section</span>
+          </a>
+          <a class="map-item" href="#backups">
+            <span class="item-number" aria-hidden="true">04</span>
+            <h3>Backups and PCBK</h3>
+            <p>Follow export, encryption, validation, and restore rules across app data and PCBK format.</p>
+            <span class="map-link-label">Read backup section</span>
+          </a>
+          <a class="map-item" href="#infrastructure">
+            <span class="item-number" aria-hidden="true">05</span>
+            <h3>Infrastructure</h3>
+            <p>Nginx, Redis, Coturn, dashboard, and Docker pieces that keep self-hosted stack running.</p>
+            <span class="map-link-label">Read infrastructure section</span>
+          </a>
+          <a class="map-item" href="#quality">
+            <span class="item-number" aria-hidden="true">06</span>
+            <h3>Quality boundaries</h3>
+            <p>Review tests, runtime validation, and explicit limits around security-sensitive code paths.</p>
+            <span class="map-link-label">Read quality section</span>
+          </a>
+        </nav>
+
+        <aside class="repo-callout" aria-label="Project source repository">
+          <div>
+            <p class="eyebrow">Source available</p>
+            <h3>Inspect code, run stack, or follow changes on GitHub.</h3>
+            <p>
+              Repository is public home for code, deployment files, docs, and security boundaries.
+            </p>
+            <a class="repo-url" href="https://github.com/Drete457/private-communication" target="_blank" rel="noopener noreferrer">
+              github.com/Drete457/private-communication
+              <span class="sr-only">(opens in a new tab)</span>
+            </a>
+          </div>
+          <a class="button primary" href="https://github.com/Drete457/private-communication" target="_blank" rel="noopener noreferrer">
+            Visit repository
+            <span class="sr-only">(opens in a new tab)</span>
+          </a>
+        </aside>
+      </section>
+
+      <section class="section split" id="backend" aria-labelledby="backend-title">
+        <div class="section-heading sticky-heading">
+          <p class="eyebrow">Backend</p>
+          <h2 id="backend-title">Coordination without plaintext access.</h2>
+          <p>
+            Backend validates identity and transport, then coordinates real-time state. It routes presence, queues, calls, and files without reading plaintext.
+          </p>
+        </div>
+
+        <div class="feature-stack">
+          <article class="feature-row">
+            <span class="feature-icon" aria-hidden="true">SR</span>
+            <div>
+              <h3>Signed HTTP routes</h3>
+              <p>APIs verify signatures over method, path, time, body, and identity. Responses are schema-validated before send.</p>
+            </div>
+          </article>
+          <article class="feature-row">
+            <span class="feature-icon" aria-hidden="true">WS</span>
+            <div>
+              <h3>WebSocket challenge-response</h3>
+              <p>Each session starts with signed nonce challenge. After auth, socket carries encrypted messages, receipts, presence, and call signaling.</p>
+            </div>
+          </article>
+          <article class="feature-row">
+            <span class="feature-icon" aria-hidden="true">RD</span>
+            <div>
+              <h3>Redis runtime state</h3>
+              <p>Redis stores presence, public keys, encrypted queues, receipts, push subscriptions, pending calls, sessions, and dashboard counters.</p>
+            </div>
+          </article>
+          <article class="feature-row">
+            <span class="feature-icon" aria-hidden="true">AT</span>
+            <div>
+              <h3>Encrypted attachments</h3>
+              <p>Server validates policy, chunks, hashes, manifests, auth, expiry, and acknowledgements. File bytes arrive already encrypted.</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split reverse" id="frontend" aria-labelledby="frontend-title">
+        <div class="section-heading sticky-heading">
+          <p class="eyebrow">Frontend</p>
+          <h2 id="frontend-title">The browser is the trust boundary.</h2>
+          <p>
+            Browser owns identity, keys, local data, chat, calls, push, and backups. Backend coordinates delivery, not content.
+          </p>
+        </div>
+
+        <div class="product-frame" aria-hidden="true">
+          <div class="window-bar">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <div class="preview-layout">
+            <div class="preview-sidebar">
+              <span class="avatar"></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            <div class="preview-chat">
+              <div class="message-line incoming"></div>
+              <div class="message-line outgoing"></div>
+              <div class="media-strip">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+              <div class="call-panel">
+                <strong>WebRTC call</strong>
+                <span>TURN fallback ready</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="capability-grid">
+          <article>
+            <h3>Client cryptography</h3>
+            <p>ECDH P-256, ECDSA P-256, AES-GCM, fingerprints, and `CryptoKey` private keys.</p>
+          </article>
+          <article>
+            <h3>Local persistence</h3>
+            <p>Dexie and IndexedDB keep keys, peers, messages, previews, attachments, queues, and cached media.</p>
+          </article>
+          <article>
+            <h3>Calls and media</h3>
+            <p>WebRTC calls use TURN credentials, ICE restart, relay fallback, wake lock, and reload recovery.</p>
+          </article>
+          <article>
+            <h3>PWA behavior</h3>
+            <p>Service worker handles precache, push alerts, call and message notifications, transfer reminders, and update activation.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section privacy-band" id="privacy" aria-labelledby="privacy-title">
+        <div class="section-heading centered">
+          <p class="eyebrow">Privacy model</p>
+          <h2 id="privacy-title">The server helps devices meet. Devices keep the secrets.</h2>
+          <p>
+            Identity comes from cryptographic keys, not usernames or passwords. Messages, files, calls, and backups are protected before infrastructure sees them.
+          </p>
+        </div>
+
+        <div class="boundary-grid">
+          <article>
+            <h3>Client side</h3>
+            <ul>
+              <li>Identity generation and fingerprints</li>
+              <li>Private `CryptoKey` objects</li>
+              <li>Message encryption and decryption</li>
+              <li>Attachment encryption</li>
+              <li>Backup export and restore</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Server side</h3>
+            <ul>
+              <li>Signed request validation</li>
+              <li>WebSocket signaling</li>
+              <li>Encrypted queue delivery</li>
+              <li>Presence and call state</li>
+              <li>Operational health metadata</li>
+            </ul>
+          </article>
+          <article>
+            <h3>Never plaintext</h3>
+            <ul>
+              <li>Private keys</li>
+              <li>Passphrases</li>
+              <li>Message content</li>
+              <li>Call media</li>
+              <li>Attachment bytes</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <section class="section split" id="backups" aria-labelledby="backups-title">
+        <div class="section-heading sticky-heading">
+          <p class="eyebrow">Backups</p>
+          <h2 id="backups-title">Portable encrypted recovery with PCBK backups.</h2>
+          <p>
+            Frontend decides what data to export. PCBK Core defines encrypted file format and restore rules.
+          </p>
+        </div>
+
+        <ol class="backup-diagram" aria-label="PCBK backup flow">
+          <li>
+            <span aria-hidden="true">01</span>
+            <strong>Prepare</strong>
+            <p>Select identity, peers, messages, attachments, queues, previews, and media for chosen backup mode.</p>
+          </li>
+          <li>
+            <span aria-hidden="true">02</span>
+            <strong>Encrypt</strong>
+            <p>Argon2id, HKDF, HMAC, AES-GCM, canonical CBOR, and per-record nonces protect file and records.</p>
+          </li>
+          <li>
+            <span aria-hidden="true">03</span>
+            <strong>Validate</strong>
+            <p>Restore checks prelude, authenticated header, manifest, record order, payload shape, and rollback behavior.</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="section infrastructure" id="infrastructure" aria-labelledby="infra-title">
+        <div class="section-heading">
+          <p class="eyebrow">Infrastructure</p>
+          <h2 id="infra-title">A self-hosted stack with clear edge responsibilities.</h2>
+          <p>
+            Nginx owns public edge. Backend owns identity checks, signatures, authorization, and event rules.
+          </p>
+        </div>
+
+        <div class="service-lanes" aria-label="Infrastructure services">
+          <article>
+            <span>Nginx</span>
+            <p>TLS, static PWA files, API proxying, WebSocket proxying, dashboard serving, and generic throttling.</p>
+          </article>
+          <article>
+            <span>Redis</span>
+            <p>Presence, queues, receipts, calls, public keys, push subscriptions, and runtime counters.</p>
+          </article>
+          <article>
+            <span>Coturn</span>
+            <p>STUN/TURN traversal for WebRTC calls when direct peer media transport is not available.</p>
+          </article>
+          <article>
+            <span>Dashboard</span>
+            <p>Private operational view for sessions, queues, services, system signals, risk, alerts, and recent events.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section quality" id="quality" aria-labelledby="quality-title">
+        <div class="section-heading centered">
+          <p class="eyebrow">Quality boundaries</p>
+          <h2 id="quality-title">Security-sensitive code has explicit contracts.</h2>
+          <p>
+            Tests target backup restore, rollback, and encrypted storage. Runtime validation keeps route and WebSocket contracts strict.
+          </p>
+        </div>
+
+        <div class="quality-grid">
+          <article>
+            <strong>3</strong>
+            <span>Test areas</span>
+          </article>
+          <article>
+            <strong>2</strong>
+            <span>Backup modes</span>
+          </article>
+          <article>
+            <strong>0</strong>
+            <span>Password accounts</span>
+          </article>
+          <article>
+            <strong>1</strong>
+            <span>Zero-knowledge boundary</span>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div>
+        <strong>Private Communication</strong>
+        <p>Self-hosted encrypted communication with browser-owned secrets.</p>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/Drete457/private-communication" target="_blank" rel="noopener noreferrer">
+          GitHub repository
+          <span class="sr-only">(opens in a new tab)</span>
+        </a>
+        <a href="#top">Back to top</a>
+      </div>
+    </footer>
+
+    <script src="app.js" defer></script>
+  </body>
+</html>

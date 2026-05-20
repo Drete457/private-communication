@@ -1,0 +1,3 @@
+# Placeholder file for certbot configuration
+# This directory is mounted to the certbot container
+# Certificates will be stored here after running init-ssl.sh

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private Communication Dashboard</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <main id="main-content" class="dashboard-shell" data-nav-side="left" tabindex="-1">
+    <aside class="board-nav panel" aria-label="Group navigation">
+      <div class="board-nav-head">
+        <div>
+          <p class="section-kicker">Navigate</p>
+          <h2>Groups</h2>
+        </div>
+        <button id="nav-side-toggle" class="section-button" type="button">Move right</button>
+      </div>
+      <nav class="board-nav-list" aria-label="Dashboard groups">
+        <a class="board-nav-link is-active" href="#summary-section" data-nav-group="overview" data-nav-target="summary-section"
+          aria-current="location">Overview &amp; Alerts</a>
+        <a class="board-nav-link" href="#services-section" data-nav-group="runtime" data-nav-target="services-section">Runtime &amp; Host</a>
+        <a class="board-nav-link" href="#application-section" data-nav-group="application" data-nav-target="application-section">Application &amp; Risk</a>
+        <a class="board-nav-link" href="#events-section" data-nav-group="events" data-nav-target="events-section">Recent Events</a>
+      </nav>
+    </aside>
+
+    <div class="dashboard-main">
+      <header class="hero panel">
+        <div>
+          <p class="eyebrow">Private Communication</p>
+          <h1>Operations Dashboard</h1>
+          <p class="hero-copy">Phase 6 runtime status, drill-down detail views, and hardened stale-data handling.</p>
+        </div>
+        <div class="hero-meta">
+          <span id="overall-status" class="status-chip" data-status="unknown" role="status"
+            aria-live="polite">Unknown</span>
+          <button id="refresh-button" class="refresh-button" type="button">Refresh</button>
+        </div>
+      </header>
+
+      <aside id="stale-banner" class="stale-banner panel" hidden role="status" aria-live="polite"></aside>
+
+      <section id="summary-section" class="panel" aria-labelledby="summary-heading" data-nav-section tabindex="-1">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Overview</p>
+            <h2 id="summary-heading">Dashboard Summary</h2>
+          </div>
+          <p class="section-copy">Environment, freshness, and service coverage across the current stack.</p>
+        </div>
+        <div class="summary-grid">
+          <article class="summary-card">
+            <p class="summary-label">Environment</p>
+            <p id="environment-value" class="summary-value">Loading</p>
+          </article>
+          <article class="summary-card">
+            <p class="summary-label">Last refresh</p>
+            <p id="last-refresh-value" class="summary-value">Waiting for data</p>
+          </article>
+          <article class="summary-card">
+            <p class="summary-label">Last success</p>
+            <p id="last-success-value" class="summary-value">Waiting for data</p>
+          </article>
+          <article class="summary-card">
+            <p class="summary-label">Service counts</p>
+            <p id="service-counts-value" class="summary-value">Waiting for data</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="alerts-section" class="panel" aria-labelledby="alerts-heading" data-nav-section tabindex="-1">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Alerts</p>
+            <h2 id="alerts-heading">Alert Strip</h2>
+          </div>
+          <div class="section-actions">
+            <p class="section-copy">Current firing and pending alerts, plus top active labels.</p>
+            <button id="view-alerts-button" class="section-button" type="button">View alerts</button>
+          </div>
+        </div>
+        <div class="alert-grid">
+          <article class="alert-card">
+            <p class="summary-label">Firing alerts</p>
+            <p id="alerts-firing-value" class="alert-count">0</p>
+          </article>
+          <article class="alert-card">
+            <p class="summary-label">Pending alerts</p>
+            <p id="alerts-pending-value" class="alert-count">0</p>
+          </article>
+          <article class="alert-card alert-card-wide">
+            <p class="summary-label">Top active alerts</p>
+            <div id="alerts-top-list" class="alert-list">
+              <span class="alert-empty">Waiting for data</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="services-section" class="panel" aria-labelledby="services-heading" data-nav-section tabindex="-1">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Runtime</p>
+            <h2 id="services-heading">Service Health</h2>
+          </div>
+          <p class="section-copy">Docker runtime, main containers, and backend health probes.</p>
+        </div>
+        <div id="service-grid" class="service-grid" role="list"></div>
+      </section>
+
+      <section id="system-section" class="panel" aria-labelledby="system-heading" data-nav-section tabindex="-1">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Host</p>
+            <h2 id="system-heading">Host Health</h2>
+          </div>
+          <p class="section-copy">CPU, memory, disk, and load from the dashboard runtime collector.</p>
+        </div>
+        <div class="system-grid" role="list">
+          <article class="system-card" role="listitem">
+            <p class="summary-label">CPU usage</p>
+            <p id="system-cpu-value" class="system-value">Waiting for data</p>
+            <p id="system-cpu-detail" class="system-detail">Rolling sample not loaded yet.</p>
+          </article>
+          <article class="system-card" role="listitem">
+            <p class="summary-label">Memory usage</p>
+            <p id="system-memory-value" class="system-value">Waiting for data</p>
+            <p id="system-memory-detail" class="system-detail">Memory metrics not loaded yet.</p>
+          </article>
+          <article class="system-card" role="listitem">
+            <p class="summary-label">Disk usage</p>
+            <p id="system-disk-value" class="system-value">Waiting for data</p>
+            <p id="system-disk-detail" class="system-detail">Disk metrics not loaded yet.</p>
+          </article>
+          <article class="system-card" role="listitem">
+            <p class="summary-label">Load average (1m)</p>
+            <p id="system-load-value" class="system-value">Waiting for data</p>
+            <p id="system-load-detail" class="system-detail">One-minute host load average. Temperature metrics optional.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="application-section" class="panel" aria-labelledby="application-heading" data-nav-section
+        tabindex="-1">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Application</p>
+            <h2 id="application-heading">Application Health</h2>
+          </div>
+          <p class="section-copy">Live signaling, presence, queue, call, auth, and rate-limit behavior.</p>
+        </div>
+        <div id="application-grid" class="application-grid" role="list"></div>
+      </section>
+
+      <section id="risk-section" class="panel" aria-labelledby="risk-heading" data-nav-section tabindex="-1">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Risk</p>
+            <h2 id="risk-heading">Risk And Capacity</h2>
+          </div>
+          <p class="section-copy">Redis pressure, storage growth, certificate window, probe repetition, and queue trend.
+          </p>
+        </div>
+        <div id="risk-grid" class="risk-grid" role="list"></div>
+      </section>
+
+      <section id="events-section" class="panel" aria-labelledby="events-heading" data-nav-section tabindex="-1">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Recent context</p>
+            <h2 id="events-heading">Recent Container Events</h2>
+          </div>
+          <div class="section-actions">
+            <p class="section-copy">Restart, exit, health, and high-signal log events only.</p>
+            <button id="view-events-button" class="section-button" type="button">View all events</button>
+          </div>
+        </div>
+        <ul id="events-list" class="events-list"></ul>
+      </section>
+
+      <section id="detail-layer" class="detail-layer" hidden>
+        <button id="detail-backdrop" class="detail-backdrop" type="button" aria-label="Close detail view"></button>
+        <aside id="detail-drawer" class="detail-drawer panel" role="dialog" aria-modal="true"
+          aria-labelledby="detail-title" aria-describedby="detail-summary" tabindex="-1">
+          <header class="detail-head">
+            <div class="detail-headline">
+              <p id="detail-kicker" class="detail-kicker">Detail</p>
+              <h2 id="detail-title">Loading detail</h2>
+            </div>
+            <div class="detail-controls">
+              <button id="detail-back-button" class="section-button detail-nav-button" type="button"
+                hidden>Back</button>
+              <button id="detail-close-button" class="section-button detail-nav-button" type="button">Close</button>
+            </div>
+          </header>
+          <div class="detail-summary-strip">
+            <span id="detail-status" class="service-status" data-status="unknown" hidden>Unknown</span>
+            <p id="detail-summary" class="detail-summary">Select a service, alert, or event to inspect.</p>
+          </div>
+          <div id="detail-body" class="detail-body"></div>
+        </aside>
+      </section>
+
+      <aside id="error-banner" class="error-banner" hidden role="alert" aria-live="assertive"></aside>
+    </div>
+  </main>
+
+  <script type="module" src="./app.js"></script>
+</body>
+
+</html>

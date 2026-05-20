@@ -1,0 +1,36 @@
+{
+	"name": "private-communication-workspace",
+	"private": true,
+	"scripts": {
+		"lint:backend": "npm run lint --workspace backend",
+		"lint:frontend": "npm run lint --workspace frontend",
+		"lint:pcbk-core": "npm run lint --workspace @private-communication/pcbk-core",
+		"dev:frontend": "npm run dev --workspace frontend",
+		"build:frontend": "npm run build --workspace frontend",
+		"build:pcbk-core": "npm run build --workspace @private-communication/pcbk-core",
+		"audit:website": "node ./scripts/audit-website.mjs"
+	},
+	"workspaces": [
+		"backend",
+		"frontend",
+		"packages/pcbk-core"
+	],
+	"devDependencies": {
+		"@eslint/js": "^9.39.4",
+		"chrome-launcher": "^1.2.1",
+		"eslint": "^9.39.4",
+		"eslint-import-resolver-typescript": "^4.4.4",
+		"eslint-plugin-import": "^2.32.0",
+		"eslint-plugin-jsx-a11y": "^6.10.2",
+		"eslint-plugin-n": "^18.0.1",
+		"eslint-plugin-promise": "^7.3.0",
+		"eslint-plugin-react": "^7.37.5",
+		"eslint-plugin-react-hooks": "^7.1.1",
+		"eslint-plugin-react-refresh": "^0.5.2",
+		"eslint-plugin-security": "^4.0.0",
+		"globals": "^17.6.0",
+		"lighthouse": "^13.3.0",
+		"typescript": "^6.0.3",
+		"typescript-eslint": "^8.59.3"
+	}
+}

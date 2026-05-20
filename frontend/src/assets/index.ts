@@ -1,0 +1,25 @@
+import { default as AlertCircle } from './alert-circle';
+import { default as ArrowUp } from './arrow-up';
+import { default as Backup } from './backup';
+import { default as ChatBubble } from './chat-bubble';
+import { default as Close } from './close';
+import { default as Eye } from './eye';
+import { default as GifSticker }  from './gif-sticker';
+import { default as LibraryShelf } from './library-shelf';
+import { default as Microphone } from './microphone';
+import { default as MicrophoneOff } from './microphone-off';
+import { default as PhoneCall } from './phone-call';
+import { default as PhoneOff } from './phone-off';
+import { default as Plus } from './plus';
+import logoCompressed from './private-logo-compressed.png';
+import logo from './private-logo.png';
+import { default as Send } from './send';
+import { default as SettingsSliders } from './settings-sliders';
+import { default as FavoriteStar } from './start';
+import { default as TrashBin } from './trash-bin';
+import { default as UserPlus } from './user-plus';
+import { default as VideoCamera } from './video-camera';
+import { default as VideoCameraOff } from './video-camera-off';
+
+export default logo;
+export { AlertCircle, ArrowUp, Backup, ChatBubble, Close, Eye, GifSticker, FavoriteStar, LibraryShelf, logoCompressed, Microphone, MicrophoneOff, PhoneCall, PhoneOff, Plus, Send, SettingsSliders, TrashBin, UserPlus, VideoCamera, VideoCameraOff };
