@@ -31,8 +31,9 @@ jobs:
 
           umask 077
           mkdir -p "$HOME/.ssh"
-          printf '%s\n' "${WEBSITE_DEPLOY_KEY}" > "$HOME/.ssh/website_deploy_key"
+          printf '%s\n' "${WEBSITE_DEPLOY_KEY}" | tr -d '\r' > "$HOME/.ssh/website_deploy_key"
           chmod 600 "$HOME/.ssh/website_deploy_key"
+          ssh-keygen -yf "$HOME/.ssh/website_deploy_key" > /dev/null
           ssh-keyscan -H github.com > "$HOME/.ssh/known_hosts"
           export GIT_SSH_COMMAND="ssh -i $HOME/.ssh/website_deploy_key -o IdentitiesOnly=yes -o StrictHostKeyChecking=yes"
 
