@@ -1,6 +1,28 @@
 {
 	"name": "private-communication-workspace",
 	"private": true,
+	"description": "Workspace for the Private Communication self-hosted zero-knowledge messaging platform.",
+	"author": "Filipe Mota",
+	"license": "MIT",
+	"homepage": "https://github.com/Drete457/private-communication#readme",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Drete457/private-communication.git"
+	},
+	"bugs": {
+		"url": "https://github.com/Drete457/private-communication/issues"
+	},
+	"keywords": [
+		"self-hosted",
+		"zero-knowledge",
+		"encrypted-messaging",
+		"pwa",
+		"webrtc",
+		"typescript"
+	],
+	"engines": {
+		"node": ">=24.0.0"
+	},
 	"scripts": {
 		"lint:backend": "npm run lint --workspace backend",
 		"lint:frontend": "npm run lint --workspace frontend",
@@ -8,7 +30,8 @@
 		"dev:frontend": "npm run dev --workspace frontend",
 		"build:frontend": "npm run build --workspace frontend",
 		"build:pcbk-core": "npm run build --workspace @private-communication/pcbk-core",
-		"audit:website": "node ./scripts/audit-website.mjs"
+		"audit:website": "node ./scripts/audit-website.mjs",
+		"release:create": "node ./scripts/create-release.mjs"
 	},
 	"workspaces": [
 		"backend",

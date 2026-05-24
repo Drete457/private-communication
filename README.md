@@ -2,6 +2,10 @@
 
 Private Communication is a self-hosted PWA for private, end-to-end encrypted communication. The project avoids traditional accounts: each user identity is derived from cryptographic keys, and the server acts as signaling, queueing, and infrastructure glue without seeing plaintext content.
 
+## Forks, Name, and Logo
+
+Forks and derivative projects are welcome, but the project name, logo, and other brand assets are not included in the code license. You may not reuse them in a way that suggests an official release, endorsement, or affiliation without prior written permission.
+
 ## Backend
 
 The backend lives in [backend/](backend/) and is a Node.js/TypeScript server built with Express 5 and `ws`. Its main role is to coordinate real-time communication, temporary state, and infrastructure integrations without breaking the zero-knowledge model.

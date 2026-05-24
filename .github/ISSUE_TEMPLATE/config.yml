@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Questions and deployment help
+    url: https://github.com/Drete457/private-communication/discussions
+    about: Use Discussions for setup questions, deployment help, architecture questions, and general support.
+  - name: Report a security vulnerability
+    url: https://github.com/Drete457/private-communication/security/advisories/new
+    about: Use private vulnerability reporting for undisclosed security issues. Do not open public issues for security reports.
