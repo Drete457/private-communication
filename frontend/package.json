@@ -2,6 +2,28 @@
   "name": "private-communication-pwa",
   "private": true,
   "version": "1.0.0",
+  "description": "React PWA frontend for the Private Communication self-hosted zero-knowledge messaging platform.",
+  "author": "Filipe Mota",
+  "license": "MIT",
+  "homepage": "https://github.com/Drete457/private-communication/tree/main/frontend",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Drete457/private-communication.git",
+    "directory": "frontend"
+  },
+  "bugs": {
+    "url": "https://github.com/Drete457/private-communication/issues"
+  },
+  "keywords": [
+    "self-hosted",
+    "zero-knowledge",
+    "encrypted-messaging",
+    "frontend",
+    "react",
+    "pwa",
+    "webrtc",
+    "dexie"
+  ],
   "type": "module",
   "scripts": {
     "dev": "vite",

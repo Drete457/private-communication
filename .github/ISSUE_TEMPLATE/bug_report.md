@@ -1,38 +1,91 @@
 ---
 name: Bug report
-about: Create a report to help us improve
-title: ''
-labels: ''
+about: Report a reproducible bug affecting the app, deployment, dashboard, website, or backup flow
+title: '[Bug]: '
+labels: bug
 assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+<!--
+Do not include private keys, passphrases, session tokens, plaintext messages,
+attachments, or raw production backups.
 
-**To Reproduce**
-Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
+If this may be a security issue, use the Security tab instead of a public issue.
+-->
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+## Summary
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+Describe the bug clearly and briefly.
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+## Affected Area
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
+- [ ] Backend API / WebSocket
+- [ ] Frontend app
+- [ ] WebRTC / calls
+- [ ] Attachments / media
+- [ ] Backups / restore / PCBK
+- [ ] Dashboard
+- [ ] Website
+- [ ] Docker / Nginx / Redis / TURN / deployment
+- [ ] Documentation
 
-**Additional context**
-Add any other context about the problem here.
+## Deployment Shape
+
+Describe how you are running the project.
+
+- [ ] Local development
+- [ ] Docker Compose
+- [ ] Reverse proxy with domain and TLS
+- [ ] LAN-only deployment
+- [ ] Public internet deployment
+- [ ] Other
+
+If relevant, add details such as custom Nginx config, TURN setup, browser PWA install state, or whether the issue happens only behind a proxy.
+
+## Environment
+
+- Commit, tag, or image version:
+- OS:
+- Browser and version:
+- Device type:
+- Relevant package or service (`backend`, `frontend`, `@private-communication/pcbk-core`, `website`, etc.):
+
+## Current Behavior
+
+What happened?
+
+## Expected Behavior
+
+What should have happened instead?
+
+## Reproduction Steps
+
+1. 
+2. 
+3. 
+4. 
+
+## Logs, Screenshots, or Samples
+
+Paste only sanitized logs or screenshots that are safe to publish.
+
+- [ ] I removed secrets and sensitive user data.
+- [ ] I did not include private keys, passphrases, plaintext messages, or raw production backups.
+
+## Privacy / Security Impact
+
+Does this bug affect any of the following?
+
+- confidentiality or plaintext exposure;
+- authentication or signed-request verification;
+- WebSocket session handling;
+- attachment authorization or retention;
+- backup integrity, rollback, or restore safety;
+- availability or crash loops.
+
+If none apply, say so explicitly.
+
+## Additional Context
+
+Add any other details that help reproduce or triage the issue.
