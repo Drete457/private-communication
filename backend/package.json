@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Backend signaling and coordination server for the Private Communication self-hosted zero-knowledge messaging platform.",
   "author": "Filipe Mota",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "homepage": "https://github.com/Drete457/private-communication/tree/main/backend",
   "repository": {
     "type": "git",

@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "description": "Core PCBK backup format primitives for Private Communication",
   "author": "Filipe Mota",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "homepage": "https://github.com/Drete457/private-communication/tree/main/packages/pcbk-core",
   "repository": {
     "type": "git",
