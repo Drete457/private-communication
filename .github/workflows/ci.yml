@@ -28,12 +28,14 @@ jobs:
           GITHUB_REF: ${{ github.ref }}
         run: |
           set -euo pipefail
+          export GIT_TERMINAL_PROMPT=0
 
           mkdir repo
           cd repo
           git init
           git remote add origin "https://github.com/${GITHUB_REPOSITORY}.git"
-          git -c http.extraheader="AUTHORIZATION: bearer ${GITHUB_TOKEN}" fetch --depth 1 origin "${GITHUB_REF}"
+          auth_header="$(printf 'x-access-token:%s' "${GITHUB_TOKEN}" | base64 | tr -d '\n')"
+          git -c http.extraheader="AUTHORIZATION: basic ${auth_header}" fetch --depth 1 origin "${GITHUB_REF}"
           git checkout --detach FETCH_HEAD
 
       - name: Ensure Node.js 24
