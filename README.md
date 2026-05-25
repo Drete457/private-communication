@@ -2,6 +2,10 @@
 
 Private Communication is a self-hosted PWA for private, end-to-end encrypted communication. The project avoids traditional accounts: each user identity is derived from cryptographic keys, and the server acts as signaling, queueing, and infrastructure glue without seeing plaintext content.
 
+For first-time download and self-hosted setup from a release, see [docs/getting-started.md](docs/getting-started.md).
+
+For local setup and day-to-day development workflow, see [docs/development-guide.md](docs/development-guide.md).
+
 ## Forks, Name, and Logo
 
 Forks and derivative projects are welcome, but the project name, logo, and other brand assets are not included in the code license. You may not reuse them in a way that suggests an official release, endorsement, or affiliation without prior written permission.
